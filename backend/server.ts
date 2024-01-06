@@ -155,7 +155,7 @@ export const logInRoute = app.post(
       const state: string = generateRandomString(16);
 
       const scope: string =
-        "user-read-private user-read-email user-follow-modify user-follow-read user-top-read playlist-modify-public playlist-modify-private";
+        "user-read-private user-read-email user-follow-modify user-follow-read user-top-read playlist-modify-public playlist-modify-private playlist-read-private";
 
       const stateKey: string = "spotify_auth_state";
       res.cookie(stateKey, state);

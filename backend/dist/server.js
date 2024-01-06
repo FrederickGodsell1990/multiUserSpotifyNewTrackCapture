@@ -27,7 +27,6 @@ const FRONTEND_URI = process.env.FRONTEND_URI;
 const REDIRECT_URI = process.env.REDIRECT_URI;
 exports.app = (0, express_1.default)();
 exports.port = process.env.NODE_ENV === "test" ? getRandomPort() : process.env.PORT || 3333;
-// export const port = process.env.NODE_ENV === "test" ? getRandomPort() : 3333;
 function getRandomPort() {
     return Math.floor(Math.random() * (5000 - 3000) + 3000);
 }
@@ -41,10 +40,9 @@ exports.app.use((req, res, next) => {
     next();
 });
 exports.app.use((0, cors_1.default)());
-// Sample route
-// app.get("/", (req: Request, res: Response) => {
-//   res.send("Hello, Express server with TypeScript!");
-// });
+exports.app.get("/", (req, res) => {
+    res.send("Hello, Express server with TypeScript!");
+});
 exports.app.post("/frontend_data_to_server", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     console.log("req.body is;", req.body);
@@ -128,7 +126,7 @@ exports.logInRoute = exports.app.post("/log_in", (req, res) => __awaiter(void 0,
             return text;
         };
         const state = generateRandomString(16);
-        const scope = "user-read-private user-read-email user-follow-modify user-follow-read user-top-read playlist-modify-public playlist-modify-private";
+        const scope = "user-read-private user-read-email user-follow-modify user-follow-read user-top-read playlist-modify-public playlist-modify-private playlist-read-private";
         const stateKey = "spotify_auth_state";
         res.cookie(stateKey, state);
         // REMEBER TO CHANGE THE REDIRECT URI WHEN YOU PUSH TO PRODUCTION
